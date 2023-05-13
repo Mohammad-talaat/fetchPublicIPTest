@@ -24,10 +24,14 @@ app.post('/checkIP',(req,res)=>{
 
     dns.lookup('iphost1000.ddns.net', (err, address, family) => {
         console.log('address: %j family: IPv%s', address, family);
-        if(address == ip)
-        res.status(200).json({msg:'The public ip matches the one on the server'})
+        if(address == ip){
+
+            res.status(200).json({msg:'The public ip matches the one on the server'})
+        }
+        else{
+            res.status(400).json({msg:'The public ip does not match the one on the server'})
+        }
     });
-    res.status(400).json({msg:'The public ip does not match the one on the server'})
 })
 
 app.get('/',(req,res)=>{
